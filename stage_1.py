@@ -137,7 +137,7 @@ class AES:
         s11_ = xor(self.cal_GF(hex_to_bin(mix_mat[2]), s01), self.cal_GF(hex_to_bin(mix_mat[3]), s11))
         return bin_to_hex(s00_ + s10_ + s01_ + s11_)
 
-    def encode(self, p, k):
+    def encode(self, p, k):    # 加密
         self.p = list(p)
         self.k = list(k)
         key1, key2, key3 = self.expand_key(self.k)
@@ -164,7 +164,7 @@ class AES:
         result = xor(mid, key3)
         return ''.join(map(str, result))
 
-    def decode(self, c, k):
+    def decode(self, c, k):    # 解密
         self.k = list(k)
         c = list(c)
         key1, key2, key3 = self.expand_key(self.k)
@@ -215,7 +215,7 @@ class window:
         decrypted_text = self.aes.decode(ciphertext, key)  # 使用给定的密钥对密文进行解密
         self.decrypted_text_var.set(decrypted_text)  # 显示解密后的明文
 
-    def setGUI(self):
+    def setGUI(self):    # 设置GUI界面
         ttk.Label(self.root, text="明文 (16-bit):").grid(row=0, column=0, sticky="w", padx=10, pady=10)
         ttk.Entry(self.root, textvariable=self.plaintext_var).grid(row=0, column=1, padx=10, pady=10)
         ttk.Label(self.root, text="密钥 (16-bit):").grid(row=1, column=0, sticky="w", padx=10, pady=10)
